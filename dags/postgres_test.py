@@ -14,6 +14,7 @@ with DAG(
     start_date=datetime(2025, 5, 19),
     schedule=None,
     catchup=False,
+    conn_id="postgres_default",
 ) as dag:
     create_pet_table = SQLExecuteQueryOperator(
         task_id="create_pet_table",
