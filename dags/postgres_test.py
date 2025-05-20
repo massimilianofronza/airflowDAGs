@@ -14,10 +14,10 @@ with DAG(
     start_date=datetime(2025, 5, 19),
     schedule=None,
     catchup=False,
-    conn_id="postgres_default",
 ) as dag:
     create_pet_table = SQLExecuteQueryOperator(
         task_id="create_pet_table",
+        conn_id="postgres_default",
         sql="""
             CREATE TABLE IF NOT EXISTS pet (
             pet_id SERIAL PRIMARY KEY,
@@ -29,6 +29,7 @@ with DAG(
     )
     populate_pet_table = SQLExecuteQueryOperator(
         task_id="populate_pet_table",
+        conn_id="postgres_default",
         sql="""
             INSERT INTO pet (name, pet_type, birth_date, owner)
             VALUES
