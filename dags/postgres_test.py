@@ -36,3 +36,5 @@ with DAG(
                 ('Whiskers', 'cat', '2021-03-10', 'Charlie');
             """,
     )
+
+create_pet_table >> populate_pet_table
