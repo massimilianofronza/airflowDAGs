@@ -17,3 +17,4 @@ with DAG(
             SELECT * FROM pet;
             """,
     )
+read_pet_table
