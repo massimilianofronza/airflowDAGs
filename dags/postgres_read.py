@@ -19,17 +19,10 @@ with DAG(
     schedule=None,
     catchup=False,
 ) as dag:
+    # this task will be visible from the "Logs" tab of the Airflow UI
     read_pet_table_hook = PythonOperator(
         task_id="read_pet_table_hook",
         python_callable=fetch_pet_table,
     )
-    read_pet_table_xcom = SQLExecuteQueryOperator(
-        task_id="read_pet_table_xcom",
-        conn_id="postgres_default",
-        sql="""
-            SELECT * FROM pet;
-            """,
-        return_last=True,
-    )
 
-read_pet_table_hook >> read_pet_table_xcom
+read_pet_table_hook
