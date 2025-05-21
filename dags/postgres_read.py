@@ -20,11 +20,11 @@ with DAG(
     catchup=False,
 ) as dag:
     read_pet_table_hook = PythonOperator(
-        task_id="read_pet_table",
+        task_id="read_pet_table_hook",
         python_callable=fetch_pet_table,
     )
     read_pet_table_xcom = SQLExecuteQueryOperator(
-        task_id="read_pet_table",
+        task_id="read_pet_table_xcom",
         conn_id="postgres_default",
         sql="""
             SELECT * FROM pet;
